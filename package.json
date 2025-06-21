@@ -6,9 +6,7 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "main": "git add . && git commit -m \"Initial commit\" && git push origin main && git checkout deploy",
-    "deploy": "git merge main; git push origin deploy"
+    "lint": "next lint"
   },
   "dependencies": {
     "react": "^19.0.0",
