@@ -1,5 +1,20 @@
 @import "tailwindcss";
 
+@layer components {
+  /* Navbar */
+  .navbar {
+    @apply flex items-center justify-between p-4 bg-gray-800 text-white;
+  }
+
+  .navlink {
+    @apply text-white bg-gray-800 rounded-lg hover:underline hover:underline-offset-4 transition-all duration-300;
+  }
+
+  .navbutton {
+    @apply px-4 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-500 transition-colors duration-300
+  }
+}
+
 /* :root {
   --background: #ffffff;
   --foreground: #171717;
