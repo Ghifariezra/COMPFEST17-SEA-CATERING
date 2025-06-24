@@ -10,7 +10,7 @@ const links = [
 
 export default function Navbar() {
   return (
-    <nav className="flex items-center justify-between p-4 bg-gray-800 text-white">
+    <nav className="navbar">
       <a href="/" className="text-2xl font-bold cursor-pointer">SEA Catering</a>
       <ul className="flex space-x-4 gap-4">
         {links.map((link) => (
