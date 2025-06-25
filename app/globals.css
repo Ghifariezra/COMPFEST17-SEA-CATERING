@@ -62,7 +62,7 @@
 
   /* Services Section */
   .wrapper-service {
-    @apply flex flex-col gap-4 justify-center items-center text-center;
+    @apply flex flex-col gap-4 sm:gap-8 justify-center items-center text-center;
   }
 
   .heading-service {
@@ -74,7 +74,7 @@
   }
 
   .wrapper-cards-service {
-    @apply grid grid-cols-1 md:grid-cols-2 gap-4 w-full h-full;
+    @apply grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-8 w-full h-full;
   }
 
   .service-card {
