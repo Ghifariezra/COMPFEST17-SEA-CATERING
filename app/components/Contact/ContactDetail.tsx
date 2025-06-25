@@ -24,7 +24,7 @@ export default function ContactContent() {
       <section className="wrapper-hero bg-white">
         <div className="wrapper-service">
           <h1 className="heading-service">Contact Details</h1>
-          <p className="description-service">Get in touch with our team. We're here to help you with your meal planning needs and answer any questions you may have.</p>
+          <p className="description-service">Get in touch with our team. We&#39;re here to help you with your meal planning needs and answer any questions you may have.</p>
         </div>
         <div className="wrapper-cards-service">
           {contentContact.map((content) => (
