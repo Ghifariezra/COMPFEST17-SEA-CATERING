@@ -31,18 +31,23 @@
   .home-hero {
     @apply mx-auto drop-shadow-2xl;
   }
+
   .wrapper-hero {
     @apply flex flex-col items-center justify-center gap-6 min-h-screen p-6 sm:p-8 w-full;
   }
-    .wrapper-hero-child {
-      @apply flex flex-col gap-8 w-full lg:w-2/4;
-    }
+
+  .wrapper-hero-child {
+    @apply flex flex-col gap-8 w-full lg:w-2/4;
+  }
+
   .heading {
     @apply bg-clip-text text-transparent bg-gradient-to-r from-cyan-500 to-blue-500 font-bold text-2xl sm:text-3xl md:text-5xl w-full md:h-28;
   }
+
   .description {
     @apply text-gray-600 text-base sm:text-lg md:text-xl w-full;
   }
+
   .wrapper-buttons {
     @apply flex flex-col sm:flex-row gap-4 mt-8 w-full sm:w-auto justify-center;
   }
@@ -53,6 +58,35 @@
 
   .hero-button-secondary {
     @apply px-4 py-2 rounded border border-blue-500 text-blue-500 hover:bg-blue-50 transition-colors w-full sm:w-auto;
+  }
+
+  /* Services Section */
+  .wrapper-service {
+    @apply flex flex-col gap-4 justify-center items-center text-center;
+  }
+
+  .heading-service {
+    @apply font-bold text-2xl sm:text-3xl md:text-5xl;
+  }
+
+  .description-service {
+    @apply text-gray-600 text-base sm:text-lg md:text-xl w-full;
+  }
+
+  .wrapper-cards-service {
+    @apply grid grid-cols-1 md:grid-cols-2 gap-4 w-full h-full;
+  }
+
+  .service-card {
+    @apply bg-white p-4 rounded-md shadow-md flex flex-col items-center justify-center text-center gap-2 h-full;
+  }
+
+  .heading-card {
+    @apply font-bold text-lg sm:text-xl md:text-2xl;
+  }
+
+  .description-card {
+    @apply text-gray-600 text-sm sm:text-base md:text-lg h-full;
   }
 }
 
