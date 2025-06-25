@@ -16,8 +16,12 @@ const ActionButtons = () => (
 );
 
 
-export {
-    Heading,
-    Description,
-    ActionButtons,
-};
+export default function HeroContent() {
+  return (
+    <div className="wrapper-hero">
+      <Heading />
+      <Description />
+      <ActionButtons />
+    </div>
+  );
+}
