@@ -15,13 +15,14 @@ const ActionButtons = () => (
   </div>
 );
 
-
 export default function HeroContent() {
   return (
-    <div className="wrapper-hero">
-      <Heading />
-      <Description />
-      <ActionButtons />
-    </div>
+    <section className="wrapper-hero">
+      <div className="wrapper-hero-child">
+        <Heading />
+        <Description />
+        <ActionButtons />
+      </div>
+    </section>
   );
 }
