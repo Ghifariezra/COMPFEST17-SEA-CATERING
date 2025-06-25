@@ -1,4 +1,5 @@
 import LinkComp from "./linkComp";
+import Link from "next/link";
 
 const links = [
   { href: "/", text: "Home" },
@@ -11,7 +12,7 @@ const links = [
 export default function Navbar() {
   return (
     <nav className="navbar">
-      <a href="/" className="text-2xl font-bold cursor-pointer">SEA Catering</a>
+      <Link href="/" className="text-2xl font-bold cursor-pointer">SEA Catering</Link>
       <ul className="flex space-x-4 gap-4">
         {links.map((link) => (
           <LinkComp key={link.href} href={link.href} text={link.text} />
