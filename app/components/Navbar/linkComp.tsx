@@ -1,4 +1,7 @@
+"use client;";
+
 import Link from "next/link";
+import { useState } from "react";
 
 export interface LinkCompProps {
   href: string;
@@ -6,6 +9,12 @@ export interface LinkCompProps {
 }
 
 export default function LinkComp({ href, text }: LinkCompProps) {
+  const [active, setActive] = useState<string | null>(null);
+
+  const handleNavbarItem = (item: string) => {
+    setActive(item);
+  };
+
   return (
     <li className="navitem">
       {text == "Get Started" ? (
@@ -13,11 +22,10 @@ export default function LinkComp({ href, text }: LinkCompProps) {
           {text}
         </Link>
       ) : (
-        <Link href={href} className="navlink">
+        <Link href={href} onClick={() => handleNavbarItem(text)} className={`navlink ${active === text ? "underline underline-offset-4" : ""}`}>
           {text}
         </Link>
       )}
     </li>
   );
 }
- 
