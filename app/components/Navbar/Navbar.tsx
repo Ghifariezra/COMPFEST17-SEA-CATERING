@@ -20,15 +20,27 @@ export default function Navbar() {
 
   return (
     <nav className="navbar">
-      <Link href="/" className="text-2xl font-bold cursor-pointer">
-        SEA Catering
-      </Link>
-      <ul className="wrapper-links">
-        {links.map((link) => (
-          <LinkComp key={link.href} href={link.href} text={link.text} />
-        ))}
-      </ul>
-      <ToggleMenu isOpen={isOpen} toggleMenu={toggleMenu} />
+      <div className="wrapper-navbar flex flex-row items-center justify-between w-full">
+        <Link href="/" className="text-2xl font-bold cursor-pointer">
+          SEA Catering
+        </Link>
+        {/* Desktop Menu */}
+        <ul className="wrapper-links">
+          {links.map((link) => (
+            <LinkComp key={link.href} href={link.href} text={link.text} />
+          ))}
+        </ul>
+        <ToggleMenu isOpen={isOpen} toggleMenu={toggleMenu} />
+      </div>
+
+      {/* Mobile Menu */}
+      {isOpen && (
+        <ul className="mobile-menu">
+          {links.map((link) => (
+            <LinkComp key={link.href} href={link.href} text={link.text} />
+          ))}
+        </ul>
+      )}
     </nav>
   );
 }

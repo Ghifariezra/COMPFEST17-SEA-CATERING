@@ -7,7 +7,7 @@ export interface LinkCompProps {
 
 export default function LinkComp({ href, text }: LinkCompProps) {
   return (
-    <li>
+    <li className="navitem">
       {text == "Get Started" ? (
         <Link href={href} className="navbutton">
           {text}
