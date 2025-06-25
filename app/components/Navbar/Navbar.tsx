@@ -1,10 +1,10 @@
 "use client";
 import { useState } from "react";
-import LinkComp from "./linkComp";
+import LinkComp, { LinkCompProps } from "./linkComp";
 import Link from "next/link";
 import ToggleMenu from "../ToggleMenu/Toggle";
 
-const links = [
+const links : LinkCompProps[] = [
   { href: "/", text: "Home" },
   { href: "/menu", text: "Menu / Meal Plans" },
   { href: "/subscriptions", text: "Subscriptions" },
