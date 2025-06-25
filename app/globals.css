@@ -29,11 +29,14 @@
 
   /* Hero Section */
   .home-hero {
-    @apply mx-auto lg:w-2/4;
+    @apply mx-auto drop-shadow-2xl;
   }
   .wrapper-hero {
     @apply flex flex-col items-center justify-center gap-6 min-h-screen p-6 sm:p-8 w-full;
   }
+    .wrapper-hero-child {
+      @apply flex flex-col gap-8 w-full lg:w-2/4;
+    }
   .heading {
     @apply bg-clip-text text-transparent bg-gradient-to-r from-cyan-500 to-blue-500 font-bold text-2xl sm:text-3xl md:text-5xl w-full md:h-28;
   }
