@@ -88,6 +88,29 @@
   .description-card {
     @apply text-gray-600 text-sm sm:text-base md:text-lg h-full;
   }
+
+  /* Testimonials Section */
+  .wrapper-testimonials {
+    @apply rounded-xl shadow-lg bg-white p-6 max-w-sm mx-auto flex flex-col gap-4;
+  }
+  .wrapper-placeholder {
+    @apply flex items-center gap-4;
+  }
+  .initial-placeholder {
+    @apply w-12 h-12 rounded-full bg-gray-200 flex items-center justify-center text-xl font-bold text-gray-500;
+  }
+  .name-testimonial {
+    @apply font-semibold text-lg;
+  }
+  .status-testimonial {
+    @apply text-sm text-gray-500;
+  }
+  .rate-testimonial {
+    @apply flex items-center gap-1;
+  }
+  .feedback-testimonial {
+    @apply text-gray-700 italic;
+  }
 }
 
 /* :root {
