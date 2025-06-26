@@ -29,7 +29,7 @@ export default function CardTestimonial({ name, from, feedback, status, rate }: 
           </svg>
         ))}
       </div>
-      <p className="feedback-testimonial">"{feedback}"</p>
+      <p className="feedback-testimonial">&ldquo;{feedback}&rdquo;</p>
     </div>
   );
 }
