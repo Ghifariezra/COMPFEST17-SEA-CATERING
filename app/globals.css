@@ -33,7 +33,7 @@
   }
 
   .wrapper-hero {
-    @apply flex flex-col items-center justify-center gap-6 min-h-screen p-6 sm:p-8 w-full;
+    @apply flex flex-col items-center justify-center gap-6 min-h-screen p-6 sm:p-8 w-full z-0;
   }
 
   .wrapper-hero-child {

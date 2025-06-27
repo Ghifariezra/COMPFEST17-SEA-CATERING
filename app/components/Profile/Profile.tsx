@@ -53,17 +53,17 @@ export default function AvatarMenu({ user }: AvatarMenuProps) {
             {showMenu && (
                 <div className="absolute right-0 mt-2 w-56 bg-white border border-zinc-200 rounded-xl shadow-xl z-50 animate-fade-in">
                     <div className="px-5 py-3 text-base font-medium text-zinc-700 border-b border-zinc-100 bg-zinc-50 rounded-t-xl">
-                        {user.full_name}
+                        Hello, {user.full_name}
                     </div>
                     <button
                         onClick={() => router.push("/profile")}
-                        className="w-full text-left px-5 py-3 text-sm hover:bg-zinc-100 text-zinc-700 transition-colors duration-150"
+                        className="w-full text-left px-5 py-3 text-sm hover:bg-zinc-100 text-zinc-700 transition-colors duration-150 cursor-pointer"
                     >
                         Profile
                     </button>
                     <button
                         onClick={handleLogout}
-                        className="w-full text-left px-5 py-3 text-sm text-red-600 hover:bg-red-50 transition-colors duration-150 rounded-b-xl"
+                        className="w-full text-left px-5 py-3 text-sm text-red-600 hover:bg-red-50 transition-colors duration-150 rounded-b-xl cursor-pointer"
                     >
                         Logout
                     </button>

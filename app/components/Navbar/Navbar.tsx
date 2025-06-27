@@ -19,7 +19,7 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="navbar">
+    <nav className="navbar sticky top-0 z-50">
       <div className="wrapper-navbar flex flex-row items-center justify-between w-full">
         <Link href="/" className="text-2xl font-bold cursor-pointer">
           SEA Catering
