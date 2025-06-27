@@ -204,4 +204,4 @@ pnpm lint         # Linting
 
 - **Nama**: Ghifari Ezra Ramadhan
 - 📧 Email: [ghifariezraramadhan@gmail.com](mailto:ghifariezraramadhan@gmail.com)
-- 🔗 LinkedIn: [github.com/ghifari](https://github.com/ghifari)
+- 🔗 LinkedIn: [https://github.com/Ghifariezra](https://github.com/Ghifariezra)
