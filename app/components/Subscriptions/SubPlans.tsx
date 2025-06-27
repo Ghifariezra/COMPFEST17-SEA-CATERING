@@ -1,6 +1,7 @@
 'use client';
 import { useState } from "react";
 import { User, CreditCard, Calendar, Utensils, AlertCircle, CheckCircle } from "lucide-react";
+import { checkLogin } from "../../utils/auth";
 
 // Plan types
 const planTypes = [
@@ -119,14 +120,22 @@ export default function SubscriptionPlans() {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
+    const isLoggedIn = await checkLogin();
+    if (!isLoggedIn) {
+      sessionStorage.setItem("afterLoginRedirect", "/subscription");
+      alert("Silakan login terlebih dahulu untuk melanjutkan pemesanan.");
+      window.location.href = "/login";
+      return;
+    }
+
     if (validateForm()) {
       setIsSubmitted(true);
-      // Here you would normally send data to backend
       console.log("Subscription Data:", formData);
       console.log("Total Price:", calculateTotalPrice());
     }
   };
+  
 
   const handleMealTypeChange = (mealTypeId: string) => {
     setFormData((prev) => ({
