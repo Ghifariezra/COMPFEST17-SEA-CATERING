@@ -324,7 +324,7 @@ function MealPlanModal({ plan, isOpen, onClose }: { plan: MealPlan | null; isOpe
     </div>
   );
 }
-
+ 
 export default function MenuPlans() {
   const [selectedPlan, setSelectedPlan] = useState<MealPlan | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
