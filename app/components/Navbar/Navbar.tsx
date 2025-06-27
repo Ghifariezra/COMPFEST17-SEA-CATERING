@@ -4,7 +4,7 @@ import LinkComp, { LinkCompProps } from "./linkComp";
 import Link from "next/link";
 import ToggleMenu from "../ToggleMenu/Toggle";
 
-const links : LinkCompProps[] = [
+const links: LinkCompProps[] = [
   { href: "/", text: "Home" },
   { href: "/menu", text: "Menu / Meal Plans" },
   { href: "/subscriptions", text: "Subscriptions" },
@@ -14,6 +14,7 @@ const links : LinkCompProps[] = [
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [active, setActive] = useState<string | null>(null); // Tambah state active
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
@@ -27,7 +28,7 @@ export default function Navbar() {
         {/* Desktop Menu */}
         <ul className="wrapper-links">
           {links.map((link) => (
-            <LinkComp key={link.href} href={link.href} text={link.text} />
+            <LinkComp key={link.href} href={link.href} text={link.text} active={active} setActive={setActive} />
           ))}
         </ul>
         <ToggleMenu isOpen={isOpen} toggleMenu={toggleMenu} />
@@ -37,7 +38,7 @@ export default function Navbar() {
       {isOpen && (
         <ul className="mobile-menu">
           {links.map((link) => (
-            <LinkComp key={link.href} href={link.href} text={link.text} />
+            <LinkComp key={link.href} href={link.href} text={link.text} active={active} setActive={setActive} />
           ))}
         </ul>
       )}

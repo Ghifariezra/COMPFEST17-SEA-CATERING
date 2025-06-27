@@ -1,22 +1,18 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
 import AvatarMenu from "../Profile/Profile";
 import { useCheckAuth } from "../../hooks/useCheckAuth";
 
 export interface LinkCompProps {
   href: string;
   text: string;
+  active?: string | null;
+  setActive?: (text: string) => void;
 }
 
-export default function LinkComp({ href, text }: LinkCompProps) {
-  const [active, setActive] = useState<string | null>(null);
+export default function LinkComp({ href, text, active, setActive }: LinkCompProps) {
   const { isLoggedIn, user } = useCheckAuth();
-
-  const handleNavbarItem = (item: string) => {
-    setActive(item);
-  };
 
   if (text === "Get Started") {
     return (
@@ -31,10 +27,9 @@ export default function LinkComp({ href, text }: LinkCompProps) {
       </li>
     );
   }
-
   return (
     <li className="navitem">
-      <Link href={href} onClick={() => handleNavbarItem(text)} className={`navlink ${active === text ? "underline underline-offset-4" : ""}`}>
+      <Link href={href} className={`navlink ${active === text ? "underline underline-offset-4" : ""}`} onClick={() => setActive && setActive(text)}>
         {text}
       </Link>
     </li>
