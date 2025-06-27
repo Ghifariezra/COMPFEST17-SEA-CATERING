@@ -90,8 +90,8 @@
   }
 
   /* Testimonials Section */
-  .wrapper-testimonials {
-    @apply rounded-xl shadow-lg bg-white p-6 max-w-sm mx-auto flex flex-col gap-4;
+  .wrapper-testimonial {
+    @apply rounded-xl shadow-lg bg-white p-6 w-full mx-auto flex flex-col gap-4;
   }
   .wrapper-placeholder {
     @apply flex items-center gap-4;
