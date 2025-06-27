@@ -1,7 +1,7 @@
 // utils/auth.ts
 export async function checkLogin(): Promise<boolean> {
     try {
-        const res = await fetch("/api/me", { cache: "no-store" });
+        const res = await fetch("/api/user", { cache: "no-store" });
         const data = await res.json();
         return data?.isLoggedIn === true;
     } catch (err) {
