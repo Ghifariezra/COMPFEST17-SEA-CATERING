@@ -34,6 +34,7 @@ export default function AvatarMenu({ user }: AvatarMenuProps) {
             credentials: "include",
         });
         router.push("/");
+        router.refresh();
     };
 
     const initials = user.full_name.charAt(0).toUpperCase();
