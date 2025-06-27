@@ -1,0 +1,2 @@
+EMAIL USER: [user@site.com, admin@site.com]
+PASSWORD USER: [user123, admin123]
