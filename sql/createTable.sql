@@ -1,5 +1,3 @@
--- Active: 1743635926160@@localhost@5432@sea_catering
-
 -- Create database
 CREATE DATABASE sea_catering;
 
