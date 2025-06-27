@@ -1,6 +1,6 @@
 'use client';
 import { useState } from "react";
-import { User, Phone, CreditCard, Calendar, Utensils, MapPin, AlertCircle, CheckCircle } from "lucide-react";
+import { User, CreditCard, Calendar, Utensils, AlertCircle, CheckCircle } from "lucide-react";
 
 // Plan types
 const planTypes = [
