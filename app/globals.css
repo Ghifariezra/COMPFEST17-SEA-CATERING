@@ -4,11 +4,11 @@
 
   /* Navbar */
   .navbar {
-    @apply flex flex-col md:flex-row items-center justify-between gap-4 p-4 bg-gray-800 text-white overflow-hidden drop-shadow-md;
+    @apply flex flex-col md:flex-row items-center justify-between gap-4 p-4 bg-gray-800 text-white drop-shadow-md;
   }
 
   .wrapper-links {
-    @apply hidden md:flex space-x-4 gap-4;
+    @apply hidden md:flex justify-center items-center space-x-4 gap-4;
   }
 
   .mobile-menu {
