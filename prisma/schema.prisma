@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
   output   = "../app/generated/prisma"
@@ -12,4 +6,47 @@ generator client {
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model meal_plans {
+  id          String   @id @db.VarChar(10)
+  name        String   @db.VarChar(100)
+  description String
+  price       Int
+  duration    String   @db.VarChar(20)
+  servings    Int
+  category    String   @db.VarChar(20)
+  dietary     String[]
+  rating      Decimal  @db.Decimal(2, 1)
+  reviews     Int
+  calories    String   @db.VarChar(20)
+  prep_time   String   @db.VarChar(20)
+  image       String
+  meals       String[]
+}
+
+model subscriptions {
+  id               Int       @id @default(autoincrement())
+  full_name        String    @db.VarChar(100)
+  phone            String    @db.VarChar(30)
+  address          String
+  plan_id          String    @db.VarChar(20)
+  meal_types       String[]
+  delivery_days_id String    @db.VarChar(20)
+  custom_days      String[]
+  allergies        String?
+  total_price      Int
+  submitted_at     DateTime? @default(now()) @db.Timestamp(6)
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model testimonials {
+  id         Int       @id @default(autoincrement())
+  name       String    @db.VarChar(100)
+  from       String    @db.VarChar(100)
+  feedback   String
+  status     String    @db.VarChar(100)
+  rate       Int
+  created_at DateTime? @default(now()) @db.Timestamp(6)
 }
