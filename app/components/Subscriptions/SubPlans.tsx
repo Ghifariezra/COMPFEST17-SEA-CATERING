@@ -124,8 +124,7 @@ export default function SubscriptionPlans() {
     const isLoggedIn = await checkLogin();
     if (!isLoggedIn) {
       sessionStorage.setItem("afterLoginRedirect", "/subscription");
-      alert("Silakan login terlebih dahulu untuk melanjutkan pemesanan.");
-      window.location.href = "/login";
+      window.location.href = "/get-started";
       return;
     }
 
@@ -429,7 +428,7 @@ export default function SubscriptionPlans() {
 
         {/* Submit Button */}
         <div className="text-center">
-          <button onClick={handleSubmit} className="bg-green-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-green-700 transition-colors shadow-lg">
+          <button onClick={handleSubmit} className="bg-green-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-green-700 transition-colors shadow-lg cursor-pointer">
             Subscribe Now
           </button>
           <p className="text-sm text-gray-500 mt-2">
