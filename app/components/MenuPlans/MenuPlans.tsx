@@ -210,15 +210,18 @@ function MealPlanModal({ plan, isOpen, onClose }: { plan: MealPlan | null; isOpe
   if (!isOpen || !plan) return null;
   const [isLoading, setIsLoading] = useState(false);
   const handleAddToCart = async () => {
+    setIsLoading(true);
     const isLoggedIn = await checkLogin();
     if (!isLoggedIn) {
       sessionStorage.setItem("afterLoginRedirect", "/subscription");
       window.location.href = "/get-started";
+      setIsLoading(false); // <- tambahkan ini
       return;
     }
 
-    // TODO: Add logic to add to cart
+    // TODO: logic tambah ke cart
     alert(`Added "${plan.name}" to cart!`);
+    setIsLoading(false);
   };
 
   return (
@@ -311,8 +314,7 @@ function MealPlanModal({ plan, isOpen, onClose }: { plan: MealPlan | null; isOpe
               onClick={handleAddToCart}
               disabled={isLoading}
               className={`w-full py-3 rounded-lg font-semibold transition-colors duration-200 cursor-pointer
-    ${isLoading ? "bg-green-300 cursor-not-allowed" : "bg-green-600 hover:bg-green-700 text-white"}
-  `}
+                ${isLoading ? "bg-green-300 cursor-not-allowed" : "bg-green-600 hover:bg-green-700 text-white"}`}
             >
               {isLoading ? "Adding..." : "Add to Cart"}
             </button>
