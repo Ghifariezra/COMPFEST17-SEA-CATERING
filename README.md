@@ -197,11 +197,3 @@ pnpm lint         # Linting
 * ✅ Layout responsif
 * ✅ Dokumentasi README
 * ✅ Riwayat git commit bertahap
-
----
-
-## 👨‍💻 Developer
-
-- **Nama**: Ghifari Ezra Ramadhan
-- 📧 Email: [ghifariezraramadhan@gmail.com](mailto:ghifariezraramadhan@gmail.com)
-- 🔗 LinkedIn: [https://github.com/Ghifariezra](https://github.com/Ghifariezra)
