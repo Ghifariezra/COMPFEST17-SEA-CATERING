@@ -15,30 +15,34 @@ const links: LinkCompProps[] = [
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [active, setActive] = useState<string | null>(null);
-
-  const handleToggleMenu = () => setIsOpen((prev) => !prev);
-
-  const renderLinks = () =>
-    links.map((link) => (
-      <LinkComp
-        key={link.href}
-        href={link.href}
-        text={link.text}
-        active={active}
-        setActive={setActive}
-      />
-    ));
-
+  
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
+ 
   return (
     <nav className="navbar sticky top-0 z-50">
       <div className="wrapper-navbar flex flex-row items-center justify-between w-full">
         <Link href="/" className="text-2xl font-bold cursor-pointer">
           SEA Catering
         </Link>
-        <ul className="wrapper-links">{renderLinks()}</ul>
-        <ToggleMenu isOpen={isOpen} toggleMenu={handleToggleMenu} />
+        {/* Desktop Menu */}
+        <ul className="wrapper-links">
+          {links.map((link) => (
+            <LinkComp key={link.href} href={link.href} text={link.text} active={active} setActive={setActive} />
+          ))}
+        </ul>
+        <ToggleMenu isOpen={isOpen} toggleMenu={toggleMenu} />
       </div>
-      {isOpen && <ul className="mobile-menu">{renderLinks()}</ul>}
+
+      {/* Mobile Menu */}
+      {isOpen && (
+        <ul className="mobile-menu">
+          {links.map((link) => (
+            <LinkComp key={link.href} href={link.href} text={link.text} active={active} setActive={setActive} />
+          ))}
+        </ul>
+      )}
     </nav>
   );
 }
