@@ -28,6 +28,8 @@ export async function POST(req: Request) {
             },
         });
 
+        console.log(user);
+
         if (!user) {
             return NextResponse.json(
                 { error: "Akun tidak ditemukan." },
@@ -36,6 +38,7 @@ export async function POST(req: Request) {
         }
 
         const passwordMatch = await bcrypt.compare(password, user.password);
+        console.log(passwordMatch); // <-- Return False
         if (!passwordMatch) {
             return NextResponse.json(
                 { error: "Email atau password salah." },
