@@ -1,7 +1,8 @@
-'use client';
+"use client";
 import { useState } from "react";
 import { Star, Clock, Users, Calendar, Utensils, X } from "lucide-react";
 import Image from "next/image";
+import { checkLogin } from "../../utils/auth";
 
 interface MealPlan {
   id: string;
@@ -127,13 +128,7 @@ function MealPlanCard({ plan, onSeeMore }: { plan: MealPlan; onSeeMore: (plan: M
   return (
     <div className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
       <div className="relative">
-        <Image
-          src={plan.image}
-          alt={plan.name}
-          width={400}
-          height={192}
-          className="w-full h-48 object-cover"
-        />
+        <Image src={plan.image} alt={plan.name} width={400} height={192} className="w-full h-48 object-cover" />
         <div className="absolute top-4 right-4">
           <span className={`px-3 py-1 rounded-full text-sm font-medium ${categoryColors[plan.category]}`}>{plan.category.replace("-", " ").replace(/\b\w/g, (l) => l.toUpperCase())}</span>
         </div>
@@ -213,6 +208,18 @@ function MealPlanCard({ plan, onSeeMore }: { plan: MealPlan; onSeeMore: (plan: M
 
 function MealPlanModal({ plan, isOpen, onClose }: { plan: MealPlan | null; isOpen: boolean; onClose: () => void }) {
   if (!isOpen || !plan) return null;
+  const [isLoading, setIsLoading] = useState(false);
+  const handleAddToCart = async () => {
+    const isLoggedIn = await checkLogin();
+    if (!isLoggedIn) {
+      sessionStorage.setItem("afterLoginRedirect", "/subscription");
+      window.location.href = "/get-started";
+      return;
+    }
+
+    // TODO: Add logic to add to cart
+    alert(`Added "${plan.name}" to cart!`);
+  };
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
@@ -300,7 +307,15 @@ function MealPlanModal({ plan, isOpen, onClose }: { plan: MealPlan | null; isOpe
               <span className="text-3xl font-bold text-green-600">{formatPrice(plan.price)}</span>
               <span className="text-gray-500">for {plan.duration}</span>
             </div>
-            <button className="w-full bg-green-600 text-white py-3 rounded-lg hover:bg-green-700 transition-colors duration-200 font-semibold cursor-pointer">Add to Cart</button>
+            <button
+              onClick={handleAddToCart}
+              disabled={isLoading}
+              className={`w-full py-3 rounded-lg font-semibold transition-colors duration-200 cursor-pointer
+    ${isLoading ? "bg-green-300 cursor-not-allowed" : "bg-green-600 hover:bg-green-700 text-white"}
+  `}
+            >
+              {isLoading ? "Adding..." : "Add to Cart"}
+            </button>
           </div>
         </div>
       </div>
