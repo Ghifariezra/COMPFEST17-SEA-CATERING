@@ -18,7 +18,7 @@ export default function Navbar() {
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
-
+ 
   return (
     <nav className="navbar sticky top-0 z-50">
       <div className="wrapper-navbar flex flex-row items-center justify-between w-full">
