@@ -3,20 +3,17 @@
 -- Create database
 CREATE DATABASE sea_catering;
 
--- Create Table: subscriptions, meal_plans & testimonials
-CREATE TABLE subscriptions (
+-- Create Table: users
+CREATE TABLE users (
     id SERIAL PRIMARY KEY,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    password VARCHAR(100) NOT NULL,
     full_name VARCHAR(100) NOT NULL,
-    phone VARCHAR(30) NOT NULL,
-    address TEXT NOT NULL,
-    plan_id VARCHAR(20) NOT NULL, -- diet, protein, royal
-    meal_types TEXT [] NOT NULL, -- array of breakfast/lunch/dinner
-    delivery_days_id VARCHAR(20) NOT NULL, -- weekdays, weekends, everyday, custom
-    custom_days TEXT [], -- array of monday..sunday (only used if delivery_days_id = custom)
-    allergies TEXT, -- optional
-    total_price INTEGER NOT NULL,
-    submitted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    phone VARCHAR(30),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+-- Create Table: meal_plans
 CREATE TABLE meal_plans (
     id VARCHAR(10) PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
@@ -24,7 +21,7 @@ CREATE TABLE meal_plans (
     price INTEGER NOT NULL,
     duration VARCHAR(20) NOT NULL,
     servings INTEGER NOT NULL,
-    category VARCHAR(20) CHECK (
+    category VARCHAR(20) NOT NULL CHECK (
         category IN (
             'weight-loss',
             'muscle-gain',
@@ -32,7 +29,7 @@ CREATE TABLE meal_plans (
             'keto',
             'vegetarian'
         )
-    ) NOT NULL,
+    ),
     dietary TEXT [] NOT NULL,
     rating NUMERIC(2, 1) NOT NULL CHECK (
         rating >= 0
@@ -44,8 +41,28 @@ CREATE TABLE meal_plans (
     image TEXT NOT NULL,
     meals TEXT [] NOT NULL
 );
+
+-- Create Table: subscriptions (linked to users)
+CREATE TABLE subscriptions (
+    id SERIAL PRIMARY KEY,
+    user_id INTEGER REFERENCES users (id) ON DELETE CASCADE,
+    full_name VARCHAR(100) NOT NULL,
+    phone VARCHAR(30) NOT NULL,
+    address TEXT NOT NULL,
+    plan_id VARCHAR(20) NOT NULL, -- should match meal_plans.id
+    meal_types TEXT [] NOT NULL, -- array of breakfast/lunch/dinner
+    delivery_days_id VARCHAR(20) NOT NULL, -- weekdays, weekends, everyday, custom
+    custom_days TEXT [], -- optional (for custom)
+    allergies TEXT,
+    total_price INTEGER NOT NULL,
+    submitted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Create Table: testimonials (optional relation to users)
 CREATE TABLE testimonials (
     id SERIAL PRIMARY KEY,
+    -- Optional relation to user
+    user_id INTEGER REFERENCES users (id) ON DELETE SET NULL,
     name VARCHAR(100) NOT NULL,
     "from" VARCHAR(100) NOT NULL,
     feedback TEXT NOT NULL,
