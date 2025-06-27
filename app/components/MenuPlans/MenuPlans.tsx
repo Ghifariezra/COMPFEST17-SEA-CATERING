@@ -1,6 +1,7 @@
 'use client';
 import { useState } from "react";
 import { Star, Clock, Users, Calendar, Utensils, X } from "lucide-react";
+import Image from "next/image";
 
 interface MealPlan {
   id: string;
@@ -126,7 +127,13 @@ function MealPlanCard({ plan, onSeeMore }: { plan: MealPlan; onSeeMore: (plan: M
   return (
     <div className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
       <div className="relative">
-        <img src={plan.image} alt={plan.name} className="w-full h-48 object-cover" />
+        <Image
+          src={plan.image}
+          alt={plan.name}
+          width={400}
+          height={192}
+          className="w-full h-48 object-cover"
+        />
         <div className="absolute top-4 right-4">
           <span className={`px-3 py-1 rounded-full text-sm font-medium ${categoryColors[plan.category]}`}>{plan.category.replace("-", " ").replace(/\b\w/g, (l) => l.toUpperCase())}</span>
         </div>
@@ -211,7 +218,7 @@ function MealPlanModal({ plan, isOpen, onClose }: { plan: MealPlan | null; isOpe
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
       <div className="bg-white rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
         <div className="relative">
-          <img src={plan.image} alt={plan.name} className="w-full h-64 object-cover rounded-t-xl" />
+          <Image src={plan.image} alt={plan.name} width={800} height={256} className="w-full h-64 object-cover rounded-t-xl" priority />
           <button onClick={onClose} className="absolute top-4 right-4 bg-white rounded-full p-2 hover:bg-gray-100 transition-colors">
             <X className="w-5 h-5" />
           </button>
