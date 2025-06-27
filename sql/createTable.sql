@@ -1,21 +1,25 @@
 -- Create database
 CREATE DATABASE sea_catering;
 
--- Switch to database (opsional saat di pgAdmin atau psql CLI)
+-- Use the database
 -- \c sea_catering;
 
--- Table: users
+-- ============================================
+-- Table: users (Parent dari semua relasi user_id)
+-- ============================================
 CREATE TABLE users (
     id SERIAL PRIMARY KEY,
     email VARCHAR(100) UNIQUE NOT NULL,
     password VARCHAR(100) NOT NULL,
     full_name VARCHAR(100) NOT NULL,
     phone VARCHAR(30),
-    role VARCHAR(20) DEFAULT 'customer', -- Tambahan berdasarkan diagram
+    role VARCHAR(20) DEFAULT 'customer',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+-- ============================================
 -- Table: meal_plans
+-- ============================================
 CREATE TABLE meal_plans (
     id VARCHAR(10) PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
@@ -44,7 +48,9 @@ CREATE TABLE meal_plans (
     meals TEXT [] NOT NULL
 );
 
--- Table: subscriptions
+-- ============================================
+-- Table: subscriptions (Relasi ke users & meal_plans)
+-- ============================================
 CREATE TABLE subscriptions (
     id SERIAL PRIMARY KEY,
     user_id INTEGER NOT NULL,
@@ -64,7 +70,9 @@ CONSTRAINT fk_user_subscription FOREIGN KEY (user_id) REFERENCES users(id) ON DE
     CONSTRAINT fk_plan_subscription FOREIGN KEY (plan_id) REFERENCES meal_plans(id) ON DELETE CASCADE
 );
 
--- Table: testimonials
+-- ============================================
+-- Table: testimonials (Relasi opsional ke users)
+-- ============================================
 CREATE TABLE testimonials (
     id SERIAL PRIMARY KEY,
     user_id INTEGER,
@@ -75,6 +83,21 @@ CREATE TABLE testimonials (
     rate INTEGER NOT NULL CHECK (rate BETWEEN 0 AND 5),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 
--- Optional relation
+-- Relasi opsional
 CONSTRAINT fk_user_testimonial FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE SET NULL
+);
+
+-- ============================================
+-- Table: carts (Relasi ke users & meal_plans)
+-- ============================================
+CREATE TABLE carts (
+    id SERIAL PRIMARY KEY,
+    user_id INTEGER NOT NULL,
+    meal_plan_id VARCHAR(10) NOT NULL,
+    quantity INTEGER NOT NULL DEFAULT 1,
+    added_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+-- Relasional
+CONSTRAINT fk_user_cart FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+    CONSTRAINT fk_meal_plan_cart FOREIGN KEY (meal_plan_id) REFERENCES meal_plans(id) ON DELETE CASCADE
 );
