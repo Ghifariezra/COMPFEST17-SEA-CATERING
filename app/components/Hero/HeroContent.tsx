@@ -1,4 +1,5 @@
 import ArrowForwardRoundedIcon from "@mui/icons-material/ArrowForwardRounded";
+import Link from "next/link";
 
 const Heading = () => <h1 className="heading">Healthy Meals, Anytime, Anywhere</h1>;
 
@@ -8,10 +9,10 @@ const Description = () => (
 
 const ActionButtons = () => (
   <div className="wrapper-buttons">
-    <button className="hero-button-primary">
+    <Link href="/get-started" className="hero-button-primary">
       Start Your Journey <ArrowForwardRoundedIcon />
-    </button>
-    <button className="hero-button-secondary">View Menu Plans</button>
+    </Link>
+    <Link href="/menu" className="hero-button-secondary">View Menu Plans</Link>
   </div>
 );
 
