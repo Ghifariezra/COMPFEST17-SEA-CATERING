@@ -199,10 +199,10 @@ function MealPlanCard({ plan, onSeeMore }: { plan: MealPlan; onSeeMore: (plan: M
         )}
 
         <div className="flex space-x-3">
-          <button onClick={() => setIsExpanded(!isExpanded)} className="flex-1 px-4 py-2 border border-green-600 text-green-600 rounded-lg hover:bg-green-50 transition-colors duration-200">
+          <button onClick={() => setIsExpanded(!isExpanded)} className="flex-1 px-4 py-2 border border-green-600 text-green-600 rounded-lg hover:bg-green-50 transition-colors duration-200 cursor-pointer">
             {isExpanded ? "Show Less" : "Quick Preview"}
           </button>
-          <button onClick={() => onSeeMore(plan)} className="flex-1 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors duration-200">
+          <button onClick={() => onSeeMore(plan)} className="flex-1 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors duration-200 cursor-pointer">
             See More Details
           </button>
         </div>
@@ -300,7 +300,7 @@ function MealPlanModal({ plan, isOpen, onClose }: { plan: MealPlan | null; isOpe
               <span className="text-3xl font-bold text-green-600">{formatPrice(plan.price)}</span>
               <span className="text-gray-500">for {plan.duration}</span>
             </div>
-            <button className="w-full bg-green-600 text-white py-3 rounded-lg hover:bg-green-700 transition-colors duration-200 font-semibold">Add to Cart</button>
+            <button className="w-full bg-green-600 text-white py-3 rounded-lg hover:bg-green-700 transition-colors duration-200 font-semibold cursor-pointer">Add to Cart</button>
           </div>
         </div>
       </div>
