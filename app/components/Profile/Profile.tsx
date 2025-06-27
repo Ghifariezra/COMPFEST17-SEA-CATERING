@@ -33,8 +33,7 @@ export default function AvatarMenu({ user }: AvatarMenuProps) {
             method: "GET",
             credentials: "include",
         });
-        router.push("/");
-        router.refresh();
+        window.location.reload();
     };
 
     const initials = user.full_name.charAt(0).toUpperCase();
