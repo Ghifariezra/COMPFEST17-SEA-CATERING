@@ -54,14 +54,13 @@ export async function POST(req: Request) {
             .sign(secret);
 
         const cookieStore = cookies();
-        cookies().set("token", token, {
+        (await cookieStore).set("token", token, {
             httpOnly: true,
-            maxAge: 60 * 60,
+            maxAge: 60 * 60, // 1 jam
             path: "/",
             secure: process.env.NODE_ENV === "production",
             sameSite: "lax",
         });
-          
 
         return NextResponse.json({
             success: true,
