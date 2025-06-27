@@ -11,6 +11,17 @@ export default function AuthPage() {
   const handleSuccess = (message: string) => {
     setSuccessMessage(message);
     setPopupVisible(true);
+
+    // Delay redirect agar popup sempat tampil
+    setTimeout(() => {
+      const redirectUrl = sessionStorage.getItem("afterLoginRedirect");
+      if (redirectUrl) {
+        sessionStorage.removeItem("afterLoginRedirect");
+        window.location.href = redirectUrl;
+      } else {
+        window.location.href = "/";
+      }
+    }, 2000); // misalnya 2 detik untuk memberi waktu popup tampil
   };
 
   return (
