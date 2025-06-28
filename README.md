@@ -86,6 +86,8 @@ Akses aplikasi di: [http://localhost:3000](http://localhost:3000)
 ---
 
 ## 🗄️ Struktur & Relasi Database (Prisma)
+### ERD
+![ERD-SEA-CATERING](./ERD/sea_catering%20-%20table_relation.png)
 
 Aplikasi ini menggunakan PostgreSQL dengan Prisma ORM.  
 Berikut relasi utama antar tabel (lihat juga `prisma/schema.prisma`):
