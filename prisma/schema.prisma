@@ -10,49 +10,54 @@ datasource db {
 
 /// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 model meal_plans {
-  id          String   @id @db.VarChar(10)
-  name        String   @db.VarChar(100)
-  description String
-  price       Int
-  duration    String   @db.VarChar(20)
-  servings    Int
-  category    String   @db.VarChar(20)
-  dietary     String[]
-  rating      Decimal  @db.Decimal(2, 1)
-  reviews     Int
-  calories    String   @db.VarChar(20)
-  prep_time   String   @db.VarChar(20)
-  image       String
-  meals       String[]
+  id            String          @id @db.VarChar(10)
+  name          String          @db.VarChar(100)
+  description   String
+  price         Int
+  duration      String          @db.VarChar(20)
+  servings      Int
+  category      String          @db.VarChar(20)
+  dietary       String[]
+  rating        Decimal         @db.Decimal(2, 1)
+  reviews       Int
+  calories      String          @db.VarChar(20)
+  prep_time     String          @db.VarChar(20)
+  image         String
+  meals         String[]
+  carts         carts[]
+  subscriptions subscriptions[]
 }
 
 model subscriptions {
-  id               Int       @id @default(autoincrement())
-  user_id          Int?
-  full_name        String    @db.VarChar(100)
-  phone            String    @db.VarChar(30)
+  id               Int        @id @default(autoincrement())
+  user_id          Int
+  full_name        String     @db.VarChar(100)
+  phone            String     @db.VarChar(30)
   address          String
-  plan_id          String    @db.VarChar(20)
+  plan_id          String     @db.VarChar(10)
   meal_types       String[]
-  delivery_days_id String    @db.VarChar(20)
+  delivery_days_id String     @db.VarChar(20)
   custom_days      String[]
   allergies        String?
   total_price      Int
-  submitted_at     DateTime? @default(now()) @db.Timestamp(6)
-  users            users?    @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  submitted_at     DateTime   @default(now()) @db.Timestamp(6)
+  status           String?    @db.VarChar(20)
+  paused_until     DateTime?
+  meal_plan        meal_plans @relation(fields: [plan_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_plan_subscription")
+  users            users      @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_user_subscription")
 }
 
 /// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 model testimonials {
-  id         Int       @id @default(autoincrement())
+  id         Int      @id @default(autoincrement())
   user_id    Int?
-  name       String    @db.VarChar(100)
-  from       String    @db.VarChar(100)
+  name       String   @db.VarChar(100)
+  from       String   @db.VarChar(100)
   feedback   String
-  status     String    @db.VarChar(100)
+  status     String   @db.VarChar(100)
   rate       Int
-  created_at DateTime? @default(now()) @db.Timestamp(6)
-  users      users?    @relation(fields: [user_id], references: [id], onUpdate: NoAction)
+  created_at DateTime @default(now()) @db.Timestamp(6)
+  users      users?   @relation(fields: [user_id], references: [id], onUpdate: NoAction, map: "fk_user_testimonial")
 }
 
 model users {
@@ -61,7 +66,19 @@ model users {
   password      String          @db.VarChar(100)
   full_name     String          @db.VarChar(100)
   phone         String?         @db.VarChar(30)
-  created_at    DateTime?       @default(now()) @db.Timestamp(6)
+  role          String          @default("customer") @db.VarChar(20)
+  created_at    DateTime        @default(now()) @db.Timestamp(6)
+  carts         carts[]
   subscriptions subscriptions[]
   testimonials  testimonials[]
+}
+
+model carts {
+  id           Int        @id @default(autoincrement())
+  user_id      Int
+  meal_plan_id String     @db.VarChar(10)
+  quantity     Int        @default(1)
+  added_at     DateTime   @default(now()) @db.Timestamp(6)
+  meal_plans   meal_plans @relation(fields: [meal_plan_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_meal_plan_cart")
+  users        users      @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_user_cart")
 }
