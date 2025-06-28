@@ -1,4 +1,4 @@
-import MenuPlans from "../../components/MenuPlans/MenuPlans";
+import MenuPlans from "../components/MenuPlans/MenuPlans";
 
 export default function MenuContent() {
   return (
