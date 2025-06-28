@@ -149,9 +149,25 @@ model testimonials {
 
 ---
 
-## 🔐 Admin Setup
+## 🔐 Akun Demo
 
-Untuk menjadikan user sebagai admin, ubah kolom `role` pada tabel `users` menjadi `"admin"`.
+Gunakan akun berikut untuk login sebagai **admin** maupun **user** saat testing aplikasi:
+
+| Email               | Password   | Role     | Nama Lengkap   |
+|---------------------|------------|----------|---------------|
+| admin@site.com      | admin123   | admin    | Admin User    |
+| user@site.com       | user123    | customer | Regular User  |
+
+**Akun customer tambahan (password: `user123`):**
+
+| Email                  | Nama Lengkap   | Role      |
+|------------------------|---------------|-----------|
+| sarah.dewi1@site.com   | Sarah Dewi    | customer  |
+| linda.sari@site.com    | Linda Sari    | customer  |
+| nesya.sari@site.com    | Nesya Sari    | customer  |
+| sarah.dewi2@site.com   | Sarah Dewi    | customer  |
+| audrey.sari@site.com   | Audrey Sari   | customer  |
+| david@site.com         | David         | customer  |
 
 ---
 
@@ -218,9 +234,4 @@ pnpm lint         # Linting
   Pastikan `DATABASE_URL` di `.env` sudah benar dan PostgreSQL berjalan.
 
 - **Mau reset data?**  
-  Jalankan `npx prisma migrate reset` (akan menghapus semua data).
-
-- **Butuh seed data?**  
-  Lihat folder `/sql` untuk contoh seed SQL.
-
----
+  Jalankan `npx prisma migrate reset`
