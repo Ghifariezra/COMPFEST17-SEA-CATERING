@@ -1,97 +1,49 @@
 # 🥗 SEA-CATERING
 
-**SEA-CATERING** adalah proyek web-app yang dikembangkan untuk seleksi **Technical Challenge COMPFEST SEA**. Aplikasi ini memungkinkan pengguna untuk berlangganan makanan sehat yang dapat dikustomisasi dan dikirim ke berbagai kota di Indonesia. Aplikasi dibangun dari awal menggunakan stack modern seperti Next.js, Tailwind, Prisma, dan PostgreSQL.
+**SEA-CATERING** adalah aplikasi web modern untuk layanan langganan makanan sehat, dikembangkan untuk seleksi **Technical Challenge COMPFEST SEA**.  
+Aplikasi ini memungkinkan pengguna memesan, mengatur, dan memantau langganan makanan sehat secara fleksibel.
 
 ---
 
-## 📌 Deskripsi Singkat
+## 🚀 Fitur Utama
 
-SEA Catering berawal dari bisnis kecil yang menyediakan makanan sehat yang bisa dikustomisasi dan dikirimkan ke berbagai kota di Indonesia. Karena viral dan permintaan yang meningkat, SEA membutuhkan aplikasi web modern yang memungkinkan pelanggan untuk:
-
-* Memesan dan menyesuaikan rencana makan
-* Melihat informasi nutrisi
-* Mengatur langganan
-* Mengakses dashboard user dan admin
+- **Homepage**: Brand, slogan, pengantar bisnis, kontak.
+- **Menu**: Daftar meal plan lengkap dengan detail nutrisi.
+- **Testimonial**: Carousel & form feedback pelanggan.
+- **Langganan**: Form pemesanan, hitung otomatis harga, custom meal & hari.
+- **Dashboard User**: Lihat, pause, cancel langganan.
+- **Dashboard Admin**: Metrik bisnis (MRR, jumlah langganan, growth).
+- **Keamanan**: Register, login, hash password, role-based, validasi input.
 
 ---
 
 ## 🧰 Tech Stack
 
-* **Next.js** (App Router)
-* **TypeScript**
-* **Tailwind CSS**
-* **Prisma ORM**
-* **Node.js**
-* **PostgreSQL**
-* **pnpm** (package manager)
+- **Next.js** (App Router, TypeScript)
+- **Tailwind CSS**
+- **Prisma ORM**
+- **Node.js**
+- **PostgreSQL**
+- **pnpm** (package manager)
 
 ---
 
 ## 📁 Struktur Folder
 
 ```bash
-sea-catering/                          # Root folder project
-├── ACCOUNT.TXT                        # Catatan akun admin atau user
-├── README.md                          # Dokumentasi proyek
-├── app                                # Direktori utama routing & logic App Router Next.js
-│   ├── (auth)                         # Folder khusus halaman autentikasi
-│   │   ├── admin                      # Halaman login admin
-│   │   └── get-started               # Halaman login & register user
-│   ├── api                            # Folder untuk API routes
-│   │   ├── (auth)                     # API untuk autentikasi (login, register)
-│   │   └── (rest)                     # API lainnya (subscription, testimonial, dll)
-│   ├── components                     # Komponen UI reusable
-│   │   ├── Contact                    # Komponen kontak
-│   │   ├── Hero                       # Section hero di homepage
-│   │   ├── Login                      # Komponen form login
-│   │   ├── MenuPlans                 # Komponen daftar meal plan
-│   │   ├── Navbar                     # Navigasi utama
-│   │   ├── Profile                    # Komponen profil user
-│   │   ├── Service                    # Komponen fitur layanan
-│   │   ├── Subscriptions              # Komponen detail langganan
-│   │   ├── Testimonials               # Komponen review/testimoni
-│   │   └── ToggleMenu                 # Menu navigasi responsif mobile
-│   ├── favicon.ico                    # Ikon browser
-│   ├── generated                      # Folder file hasil generate (seperti Prisma client)
-│   │   └── prisma                     # Output Prisma
-│   ├── globals.css                    # File CSS global
-│   ├── hooks                          # Custom React hooks
-│   │   └── useCheckAuth.ts           # Hook untuk mengecek autentikasi user
-│   ├── layout.tsx                     # Layout utama aplikasi (wrapping halaman)
-│   ├── menu                           # Folder untuk halaman menu meal plans
-│   │   └── page.tsx                  # Halaman menu
-│   ├── page.tsx                       # Halaman homepage
-│   ├── subscriptions                  # Folder halaman langganan
-│   │   └── page.tsx                  # Halaman form subscription
-│   └── utils                          # Helper/utility functions
-│       └── auth.ts                   # Fungsi utilitas terkait autentikasi
-├── eslint.config.mjs                 # Konfigurasi ESLint
-├── next-env.d.ts                     # File env otomatis dari Next.js (TypeScript support)
-├── next.config.ts                    # Konfigurasi Next.js
-├── package-lock.json                 # Lockfile (jika pakai npm)
-├── package.json                      # Info dependencies dan scripts
-├── pnpm-lock.yaml                    # Lockfile khusus untuk pnpm
-├── postcss.config.mjs               # Konfigurasi PostCSS (untuk Tailwind)
-├── prisma                            # Folder skema & konfigurasi Prisma ORM
-│   ├── prisma.ts                     # File inisialisasi Prisma Client
-│   └── schema.prisma                 # Definisi skema database
-├── public                            # Folder untuk aset statis
-│   ├── file.svg                       # Aset ikon/file
-│   ├── globe.svg                      # Aset ikon/globe
-│   ├── next.svg                       # Logo Next.js
-│   ├── vercel.svg                     # Logo Vercel
-│   └── window.svg                     # Aset ikon/window
-├── sql                               # SQL script untuk setup database
-│   ├── addAcount.sql                 # Script menambah akun
-│   └── createTable.sql               # Script membuat tabel awal
-├── structure.txt                     # Catatan manual struktur folder (opsional)
-└── tsconfig.json                     # Konfigurasi TypeScript
-
+sea-catering/
+├── app/                # Source code utama (pages, api, components, hooks, utils)
+├── prisma/             # Schema & migration Prisma
+├── public/             # Static assets
+├── sql/                # SQL seed/manual scripts
+├── package.json
+├── pnpm-lock.yaml
+└── README.md
 ```
 
 ---
 
-## 🚀 Cara Menjalankan Aplikasi
+## ⚡️ Cara Menjalankan Aplikasi
 
 ### 1. Clone Repo & Install Dependencies
 
@@ -101,22 +53,26 @@ cd sea-catering
 pnpm install
 ```
 
-### 2. Buat File `.env`
+### 2. Setup Environment Variable
 
-Berdasarkan file `.env.example`, isi environment variable yang dibutuhkan:
+Buat file `.env` berdasarkan `.env.example`:
 
 ```env
-NEXT_PUBLIC_BASE_URL="YOUR_DOMAIN"
+NEXT_PUBLIC_BASE_URL="http://localhost:3000"
 JWT_SECRET="SECRET"
 DATABASE_URL="postgresql://YOUR_USERNAME:YOUR_PASSWORD@localhost:5432/YOUR_DATABASE?schema=public"
 ```
 
-### 3. Prisma Setup
+### 3. Setup Database & Prisma
 
 ```bash
 npx prisma migrate dev --name init
-npx prisma db pull
 npx prisma generate
+```
+
+Jika ingin sinkronisasi ulang dengan database yang sudah ada:
+```bash
+npx prisma db pull
 ```
 
 ### 4. Jalankan Development Server
@@ -129,52 +85,77 @@ Akses aplikasi di: [http://localhost:3000](http://localhost:3000)
 
 ---
 
-## 🎯 Fitur Berdasarkan Level
+## 🗄️ Struktur & Relasi Database (Prisma)
 
-### ✅ Level 1: Homepage
+Aplikasi ini menggunakan PostgreSQL dengan Prisma ORM.  
+Berikut relasi utama antar tabel (lihat juga `prisma/schema.prisma`):
 
-* Brand dan slogan: *"Healthy Meals, Anytime, Anywhere"*
-* Info pengantar bisnis & layanan
-* Kontak: Brian - 08123456789
+- **users** ⟷ **subscriptions** (1 user bisa punya banyak subscription)
+- **users** ⟷ **carts** (1 user bisa punya banyak cart)
+- **users** ⟷ **testimonials** (1 user bisa memberi banyak testimonial)
+- **meal_plans** ⟷ **subscriptions** (1 meal plan bisa dipilih banyak subscription)
+- **meal_plans** ⟷ **carts** (1 meal plan bisa ada di banyak cart)
 
-### ✅ Level 2: Interaktivitas
+Contoh relasi di Prisma:
+```prisma
+model users {
+  id             Int             @id @default(autoincrement())
+  email          String          @unique
+  password       String
+  full_name      String
+  phone          String
+  created_at     DateTime        @default(now())
+  role           String?
+  carts          carts[]
+  subscriptions  subscriptions[]
+  testimonials   testimonials[]
+}
 
-* Navigasi responsif
-* Halaman Menu dengan detail meal plan
-* Testimonial (form dan carousel)
+model meal_plans {
+  id             String          @id
+  name           String
+  // ...field lain
+  carts          carts[]
+  subscriptions  subscriptions[]
+}
 
-### ✅ Level 3: Sistem Langganan
+model carts {
+  id             Int         @id @default(autoincrement())
+  user_id        Int
+  meal_plan_id   String
+  // ...
+  user           users       @relation(fields: [user_id], references: [id])
+  meal_plan      meal_plans  @relation(fields: [meal_plan_id], references: [id])
+}
 
-* Form lengkap dengan:
+model subscriptions {
+  id             Int         @id @default(autoincrement())
+  user_id        Int
+  plan_id        String
+  // ...
+  user           users       @relation(fields: [user_id], references: [id])
+  meal_plan      meal_plans  @relation(fields: [plan_id], references: [id])
+}
 
-  * Nama, kontak, plan, jenis makan, hari pengiriman, alergi
-  * Hitung otomatis total biaya
-* Integrasi ke database menggunakan Prisma
-
-### ✅ Level 4: Keamanan
-
-* Autentikasi: Register & Login
-* Hash password (bcrypt)
-* Role-based authorization (user & admin)
-* Validasi & sanitasi input: cegah XSS, SQLi, CSRF
-
-### ✅ Level 5: Dashboard
-
-* **User**: lihat, pause, cancel langganan
-* **Admin**: lihat metrik (MRR, jumlah langganan, growth)
+model testimonials {
+  id             Int         @id @default(autoincrement())
+  user_id        Int
+  // ...
+  user           users       @relation(fields: [user_id], references: [id])
+}
+```
 
 ---
 
 ## 🔐 Admin Setup
 
-Untuk menjadikan user sebagai admin, ubah nilai kolom `role` di database menjadi `"admin"` pada tabel `User`.
+Untuk menjadikan user sebagai admin, ubah kolom `role` pada tabel `users` menjadi `"admin"`.
 
 ---
 
 ## 🌍 Deployment
 
-Aplikasi ini dideploy menggunakan **Vercel**:
-
+Aplikasi ini dideploy di **Vercel**:  
 🔗 [https://compfest-17-sea-catering.vercel.app/](https://compfest-17-sea-catering.vercel.app/)
 
 ---
@@ -190,10 +171,54 @@ pnpm lint         # Linting
 
 ---
 
+## 🎯 Fitur Berdasarkan Level
+
+### ✅ Level 1: Homepage
+- Brand & slogan: *"Healthy Meals, Anytime, Anywhere"*
+- Info pengantar bisnis & layanan
+- Kontak: Brian - 08123456789
+
+### ✅ Level 2: Interaktivitas
+- Navigasi responsif
+- Halaman Menu dengan detail meal plan
+- Testimonial (form & carousel)
+
+### ✅ Level 3: Sistem Langganan
+- Form lengkap: nama, kontak, plan, jenis makan, hari pengiriman, alergi
+- Hitung otomatis total biaya
+- Integrasi database (Prisma)
+
+### ✅ Level 4: Keamanan
+- Register & Login
+- Hash password (bcrypt)
+- Role-based (user/admin)
+- Validasi & sanitasi input (XSS, SQLi, CSRF)
+
+### ✅ Level 5: Dashboard
+- **User**: lihat, pause, cancel langganan
+- **Admin**: lihat metrik (MRR, jumlah langganan, growth)
+
+---
+
 ## 📄 Penilaian COMPFEST
 
-* ✅ Fitur lengkap per level
-* ✅ Clean code & arsitektur modular
-* ✅ Layout responsif
-* ✅ Dokumentasi README
-* ✅ Riwayat git commit bertahap
+- ✅ Fitur lengkap per level
+- ✅ Clean code & arsitektur modular
+- ✅ Layout responsif
+- ✅ Dokumentasi README
+- ✅ Riwayat git commit bertahap
+
+---
+
+## ❓ FAQ & Bantuan
+
+- **Error koneksi database?**  
+  Pastikan `DATABASE_URL` di `.env` sudah benar dan PostgreSQL berjalan.
+
+- **Mau reset data?**  
+  Jalankan `npx prisma migrate reset` (akan menghapus semua data).
+
+- **Butuh seed data?**  
+  Lihat folder `/sql` untuk contoh seed SQL.
+
+---
