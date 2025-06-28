@@ -4,16 +4,16 @@ import { NextResponse } from "next/server";
 export async function GET() {
     const cookieStore = cookies();
 
-    // Hapus cookie token
+    // Hapus cookie
     (await
-        // Hapus cookie token
+        // Hapus cookie
         cookieStore).set("token", "", {
         path: "/",
         httpOnly: true,
-        expires: new Date(0), // Expire immediately
+        expires: new Date(0),
         sameSite: "lax",
     });
 
-    // Redirect ke halaman utama (atau bisa diarahkan ke /login)
-    return NextResponse.redirect(new URL("/", process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000"));
+    // Kirim status sukses
+    return NextResponse.json({ success: true });
 }
