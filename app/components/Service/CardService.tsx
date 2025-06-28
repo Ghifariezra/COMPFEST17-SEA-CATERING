@@ -1,10 +1,6 @@
-export interface CardServiceProps {
-  title: string;
-  description: string;
-  // image: string;
-}
+import { CardContactProps } from "../../types/Contact";
 
-export default function CardService({ title, description }: CardServiceProps) {
+export default function CardService({ title, description }: CardContactProps) {
   return (
     <div className="service-card">
       <h2 className="heading-card">{title}</h2>

@@ -2,15 +2,9 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
-
-interface User {
-    full_name: string;
-    email: string;
-}
-
-interface AvatarMenuProps {
-    user: User;
-}
+import { 
+    AvatarMenuProps
+ } from "../../types/Profile";
 
 export default function AvatarMenu({ user }: AvatarMenuProps) {
     const [showMenu, setShowMenu] = useState(false);

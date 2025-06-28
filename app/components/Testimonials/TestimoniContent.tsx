@@ -1,6 +1,9 @@
 "use client";
 import { useEffect, useState } from "react";
-import CardTestimonial, { CardTestimonialProps } from "./CardTesti";
+import CardTestimonial from "./CardTesti";
+import {
+  CardTestimonialProps
+} from "../../types/Testimonials";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import "swiper/css";

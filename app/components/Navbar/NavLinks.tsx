@@ -1,4 +1,7 @@
-import LinkComp, { LinkCompProps } from "./linkComp";
+import LinkComp from "./linkComp";
+import { 
+  LinkCompProps
+ } from "../../types/Navbar";
 
 const links: LinkCompProps[] = [
   { href: "/", text: "Home" },

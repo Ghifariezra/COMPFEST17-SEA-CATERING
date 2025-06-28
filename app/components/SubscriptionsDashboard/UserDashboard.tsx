@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import ActiveSubscriptions from "./ActiveSubscriptions";
 import PauseSubscriptionModal from "./PauseSubscriptionModal";
 import CancelSubscriptionModal from "./CancelSubscriptionModal";
-import type { Subscription } from "./types";
+import { Subscription } from "../../types/Subscriptions";
 
 export default function UserDashboard() {
   const [subscriptions, setSubscriptions] = useState<Subscription[]>([]);

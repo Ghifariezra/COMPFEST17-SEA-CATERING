@@ -1,8 +1,6 @@
-export interface CardContactProps {
-  title: string;
-  description: string;
-  // image: string;
-}
+import {
+  CardContactProps
+} from "../../types/Contact";
 
 export default function CardContact({ title, description }: CardContactProps) {
   return (

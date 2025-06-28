@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
-import LinkComp, { LinkCompProps } from "./linkComp";
+import LinkComp from "./linkComp";
+import { LinkCompProps } from "../../types/Navbar";
 import Link from "next/link";
 import ToggleMenu from "../ToggleMenu/Toggle";
 
@@ -15,11 +16,11 @@ const links: LinkCompProps[] = [
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [active, setActive] = useState<string | null>(null);
-  
+
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
- 
+
   return (
     <nav className="navbar sticky top-0 z-50">
       <div className="wrapper-navbar flex flex-row items-center justify-between w-full">

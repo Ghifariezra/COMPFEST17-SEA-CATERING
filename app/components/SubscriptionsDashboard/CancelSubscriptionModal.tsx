@@ -1,12 +1,8 @@
-import type { Subscription } from "./types";
+import {
+  PropsCancel
+} from "../../types/Subscriptions";
 
-interface Props {
-  subscription: Subscription;
-  onClose: () => void;
-  onCancelled: (id: string) => void;
-}
-
-export default function CancelSubscriptionModal({ subscription, onClose, onCancelled }: Props) {
+export default function CancelSubscriptionModal({ subscription, onClose, onCancelled }: PropsCancel) {
   const handleCancel = async () => {
     // Call API to cancel
     await fetch(`/api/cancel-subscription/${subscription.id}`, { method: "POST" });

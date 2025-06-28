@@ -1,13 +1,9 @@
 import { useState } from "react";
-import type { Subscription } from "./types";
+import {
+  PropsPause
+} from "../../types/Subscriptions";
 
-interface Props {
-  subscription: Subscription;
-  onClose: () => void;
-  onPaused: (updated: Subscription) => void;
-}
-
-export default function PauseSubscriptionModal({ subscription, onClose, onPaused }: Props) {
+export default function PauseSubscriptionModal({ subscription, onClose, onPaused }: PropsPause) {
   const [pauseUntil, setPauseUntil] = useState("");
 
   const handlePause = async () => {

@@ -1,6 +1,7 @@
-import CardService, { CardServiceProps } from "./CardService";
+import CardService from "./CardService";
+import { CardContactProps } from "../../types/Contact";
 
-const contentService: CardServiceProps[] = [
+const contentService: CardContactProps[] = [
   {
     title: "Meal Customization",
     description: "Personalize your meal plans based on dietary preferences, allergies, and nutritional goals. Choose from various cuisines and portion sizes.",

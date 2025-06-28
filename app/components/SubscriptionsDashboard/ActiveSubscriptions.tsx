@@ -1,12 +1,8 @@
-import type { Subscription } from "./types";
+import {
+  PropsActive
+} from "../../types/Subscriptions";
 
-interface Props {
-  subscriptions: Subscription[];
-  onPause: (sub: Subscription) => void;
-  onCancel: (sub: Subscription) => void;
-}
-
-export default function ActiveSubscriptions({ subscriptions, onPause, onCancel }: Props) {
+export default function ActiveSubscriptions({ subscriptions, onPause, onCancel }: PropsActive) {
   if (subscriptions.length === 0) return <p>No active subscriptions.</p>;
 
   return (

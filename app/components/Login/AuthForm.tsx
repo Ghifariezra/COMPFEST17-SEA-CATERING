@@ -1,10 +1,9 @@
 "use client";
 
 import { useState } from "react";
-
-interface AuthFormProps {
-  onSuccess: (message: string) => void;
-}
+import {
+  AuthFormProps
+} from "../../types/Form";
 
 export default function AuthForm({ onSuccess }: AuthFormProps) {
   const [form, setForm] = useState({ email: "", password: "" });

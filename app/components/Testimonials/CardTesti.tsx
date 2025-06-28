@@ -1,13 +1,7 @@
 import React from "react";
-
-export interface CardTestimonialProps {
-  id: string;
-  name: string;
-  from: string;
-  feedback: string;
-  status: string;
-  rate: number;
-}
+import {
+  CardTestimonialProps
+} from "../../types/Testimonials";
 
 export default function CardTestimonial({ name, from, feedback, status, rate }: CardTestimonialProps) {
   // Ambil dua huruf awal nama untuk avatar

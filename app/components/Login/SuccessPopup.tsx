@@ -1,12 +1,9 @@
 "use client";
 
 import { useEffect } from "react";
-
-interface SuccessPopupProps {
-  message: string;
-  visible: boolean;
-  onClose: () => void;
-}
+import {
+  SuccessPopupProps
+} from "../../types/Form";
 
 export default function SuccessPopup({ message, visible, onClose }: SuccessPopupProps) {
   useEffect(() => {
