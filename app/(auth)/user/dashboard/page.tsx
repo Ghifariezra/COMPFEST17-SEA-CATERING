@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import UserDashboard from "../../../components/SubscriptionsDashboard/UserDashboard";
-import { checkLogin } from "../../../utils/auth";
+import { checkLogin } from "../../../utils/AuthUser";
 
 export default function DashboardPage() {
   const [loading, setLoading] = useState(true);
