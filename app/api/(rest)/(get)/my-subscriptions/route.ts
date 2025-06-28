@@ -1,11 +1,11 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import { jwtVerify } from "jose";
 import prisma from "@/prisma/prisma";
 
 const secret = new TextEncoder().encode(process.env.JWT_SECRET);
 
-export async function GET(req: NextRequest) {
+export async function GET() {
   try {
     const cookieStore = cookies();
     const token = (await cookieStore).get("token")?.value;
