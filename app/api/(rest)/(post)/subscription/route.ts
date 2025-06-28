@@ -1,7 +1,7 @@
 import { cookies } from "next/headers";
 import { jwtVerify } from "jose";
 import { NextResponse } from "next/server";
-import { createSubscription } from "@/app/service/subscription";
+import { createSubscription } from "@/app/services/subscription";
 import prisma from "@/prisma/prisma";
 
 const secret = new TextEncoder().encode(process.env.JWT_SECRET);
