@@ -1,8 +1,7 @@
--- Create database
+-- Create database (jalankan sekali saja)
 CREATE DATABASE sea_catering;
 
--- Use the database
--- \c sea_catering;
+-- Use the database (di psql: \c sea_catering)
 
 -- ============================================
 -- Table: users (Parent dari semua relasi user_id)
@@ -13,8 +12,8 @@ CREATE TABLE users (
     password VARCHAR(100) NOT NULL,
     full_name VARCHAR(100) NOT NULL,
     phone VARCHAR(30),
-    role VARCHAR(20) DEFAULT 'customer',
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    role VARCHAR(20) NOT NULL DEFAULT 'customer',
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
 -- ============================================
@@ -58,16 +57,14 @@ CREATE TABLE subscriptions (
     phone VARCHAR(30) NOT NULL,
     address TEXT NOT NULL,
     plan_id VARCHAR(10) NOT NULL,
-    meal_types TEXT[] NOT NULL,
+    meal_types TEXT [] NOT NULL,
     delivery_days_id VARCHAR(20) NOT NULL,
-    custom_days TEXT[],
+    custom_days TEXT [],
     allergies TEXT,
     total_price INTEGER NOT NULL,
-    submitted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-
--- Relational constraints
-CONSTRAINT fk_user_subscription FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
-    CONSTRAINT fk_plan_subscription FOREIGN KEY (plan_id) REFERENCES meal_plans(id) ON DELETE CASCADE
+    submitted_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT fk_user_subscription FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE,
+    CONSTRAINT fk_plan_subscription FOREIGN KEY (plan_id) REFERENCES meal_plans (id) ON DELETE CASCADE
 );
 
 -- ============================================
@@ -81,10 +78,8 @@ CREATE TABLE testimonials (
     feedback TEXT NOT NULL,
     status VARCHAR(100) NOT NULL,
     rate INTEGER NOT NULL CHECK (rate BETWEEN 0 AND 5),
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-
--- Relasi opsional
-CONSTRAINT fk_user_testimonial FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE SET NULL
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT fk_user_testimonial FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE SET NULL
 );
 
 -- ============================================
@@ -95,9 +90,7 @@ CREATE TABLE carts (
     user_id INTEGER NOT NULL,
     meal_plan_id VARCHAR(10) NOT NULL,
     quantity INTEGER NOT NULL DEFAULT 1,
-    added_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-
--- Relasional
-CONSTRAINT fk_user_cart FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
-    CONSTRAINT fk_meal_plan_cart FOREIGN KEY (meal_plan_id) REFERENCES meal_plans(id) ON DELETE CASCADE
+    added_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT fk_user_cart FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE,
+    CONSTRAINT fk_meal_plan_cart FOREIGN KEY (meal_plan_id) REFERENCES meal_plans (id) ON DELETE CASCADE
 );
