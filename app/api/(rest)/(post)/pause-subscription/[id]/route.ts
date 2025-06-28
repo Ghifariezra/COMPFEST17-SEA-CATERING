@@ -1,8 +1,15 @@
 import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/prisma/prisma";
 
-export async function POST(req: NextRequest, context: { params: { id: string } }) {
-  const { id } = context.params;
+type Props = {
+  params: Promise<{ id: string }>;
+};
+
+export async function POST(
+  req: NextRequest,
+  context: Props
+) {
+  const { id } = await context.params;
   const { pauseUntil } = await req.json();
 
   // Pastikan kolom status dan paused_until ada di tabel subscriptions
