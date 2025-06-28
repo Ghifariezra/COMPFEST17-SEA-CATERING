@@ -13,7 +13,7 @@ export default function SuccessPopup({ message, visible, onClose }: SuccessPopup
     if (visible) {
       const timeout = setTimeout(() => {
         onClose();
-        window.location.href = "/admin/dashboard";
+        window.location.href = "/";
       }, 3000);
       return () => clearTimeout(timeout);
     }

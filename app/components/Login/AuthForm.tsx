@@ -31,7 +31,7 @@ export default function AuthForm({ onSuccess }: AuthFormProps) {
       if (!res.ok) throw new Error(data.error || "Login failed");
 
       onSuccess("Login successful!");
-      window.location.href = "/";
+      window.location.href = "/user/dashboard";
     } catch (err) {
       if (err instanceof Error) setError(err.message);
       else setError("An unknown error occurred");
