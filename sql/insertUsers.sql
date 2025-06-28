@@ -33,3 +33,14 @@ VALUES (
         '089876543210',
         'customer'
     );
+
+-- Tambahan user dari contentTestimoni
+
+INSERT INTO users (email, password, full_name, phone, role)
+VALUES
+  ('sarah.dewi1@site.com', '$2b$10$HlUvy4D4pl7Cs9UhpfG82uULQM6ESHNY8vdbtk0P6wbBlB35Gs47q', 'Sarah Dewi', '081111111111', 'customer'),
+  ('linda.sari@site.com',  '$2b$10$HlUvy4D4pl7Cs9UhpfG82uULQM6ESHNY8vdbtk0P6wbBlB35Gs47q', 'Linda Sari', '081111111112', 'customer'),
+  ('nesya.sari@site.com',  '$2b$10$HlUvy4D4pl7Cs9UhpfG82uULQM6ESHNY8vdbtk0P6wbBlB35Gs47q', 'Nesya Sari', '081111111113', 'customer'),
+  ('sarah.dewi2@site.com', '$2b$10$HlUvy4D4pl7Cs9UhpfG82uULQM6ESHNY8vdbtk0P6wbBlB35Gs47q', 'Sarah Dewi', '081111111114', 'customer'),
+  ('audrey.sari@site.com', '$2b$10$HlUvy4D4pl7Cs9UhpfG82uULQM6ESHNY8vdbtk0P6wbBlB35Gs47q', 'Audrey Sari', '081111111115', 'customer'),
+  ('david@site.com',       '$2b$10$HlUvy4D4pl7Cs9UhpfG82uULQM6ESHNY8vdbtk0P6wbBlB35Gs47q', 'David',      '081111111116', 'customer');
