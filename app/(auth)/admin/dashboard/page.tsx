@@ -3,11 +3,7 @@ import { getAdminMetrics } from "../../../services/admin";
 import { checkLoginAdmin } from "../../../utils/AuthAdmin";
 import { redirect } from "next/navigation";
 
-type Props = {
-  searchParams?: { start?: string; end?: string };
-};
-
-export default async function AdminDashboard({ searchParams }: Props) {
+export default async function AdminDashboard({ searchParams }: { searchParams?: { start?: string; end?: string } }) {
   // Cek login dan role admin
   const user = await checkLoginAdmin();
   if (!user || user.role !== "admin") {
