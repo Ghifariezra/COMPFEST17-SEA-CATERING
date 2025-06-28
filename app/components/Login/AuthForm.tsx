@@ -32,7 +32,11 @@ export default function AuthForm({ onSuccess }: AuthFormProps) {
 
       onSuccess("Login successful!");
       
-      data.data.role === "admin" ? (window.location.href = "/admin/dashboard") : (window.location.href = "/user/dashboard");
+      if (data.data.role === "admin") {
+        window.location.href = "/admin/dashboard";
+      } else {
+        window.location.href = "/user/dashboard";
+      }
     } catch (err) {
       if (err instanceof Error) setError(err.message);
       else setError("An unknown error occurred");
