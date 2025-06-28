@@ -1,4 +1,4 @@
-import SubscriptionPlans from "../components/Subscriptions/SubPlans";
+import SubscriptionPlans from "../../components/Subscriptions/SubPlans";
 
 export default function SubscriptionsContent() {
   return (
