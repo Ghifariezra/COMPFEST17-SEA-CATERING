@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 interface User {
     full_name: string;
     email: string;
+    role: string;
 }
 
 export function useCheckAuth() {
@@ -14,7 +15,9 @@ export function useCheckAuth() {
     useEffect(() => {
         async function checkAuth() {
             try {
-                const res = await fetch("/api/user");
+                const res = await fetch("/api/user", {
+                    credentials: "include",
+                });
                 const data = await res.json();
                 setIsLoggedIn(data?.isLoggedIn || false);
                 if (data?.user) setUser(data.user);
