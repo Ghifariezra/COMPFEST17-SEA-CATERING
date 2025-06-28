@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Star, Clock, Users, Calendar, Utensils, X } from "lucide-react";
 import Image from "next/image";
 import { checkLogin } from "../../utils/auth";
@@ -20,89 +20,6 @@ interface MealPlan {
   image: string;
   meals: string[];
 }
-
-const mealPlans: MealPlan[] = [
-  {
-    id: "1",
-    name: "Balanced Nutrition Plan",
-    description: "Perfect balance of proteins, carbs, and healthy fats for overall wellness",
-    price: 299000,
-    duration: "7 days",
-    servings: 21,
-    category: "balanced",
-    dietary: ["Gluten-Free Option", "Dairy-Free Option"],
-    rating: 4.8,
-    reviews: 124,
-    calories: "1800-2000",
-    prep_time: "15 min",
-    image: "https://images.unsplash.com/photo-1546793665-c74683f339c1?w=400",
-    meals: ["Grilled Salmon & Quinoa", "Mediterranean Bowl", "Lean Protein Stir-fry"],
-  },
-  {
-    id: "2",
-    name: "Weight Loss Accelerator",
-    description: "Low-calorie, high-protein meals designed to boost metabolism",
-    price: 279000,
-    duration: "7 days",
-    servings: 21,
-    category: "weight-loss",
-    dietary: ["Low-Carb", "High-Protein"],
-    rating: 4.9,
-    reviews: 89,
-    calories: "1200-1500",
-    prep_time: "12 min",
-    image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400",
-    meals: ["Grilled Chicken Salad", "Zucchini Noodles", "Protein Power Bowl"],
-  },
-  {
-    id: "3",
-    name: "Muscle Building Pro",
-    description: "High-protein meals with complex carbs for muscle growth and recovery",
-    price: 349000,
-    duration: "7 days",
-    servings: 21,
-    category: "muscle-gain",
-    dietary: ["High-Protein", "Post-Workout"],
-    rating: 4.7,
-    reviews: 156,
-    calories: "2200-2500",
-    prep_time: "18 min",
-    image: "https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=400",
-    meals: ["Protein-Packed Bowls", "Lean Beef & Sweet Potato", "Recovery Smoothies"],
-  },
-  {
-    id: "4",
-    name: "Keto Lifestyle",
-    description: "Low-carb, high-fat meals to maintain ketosis and energy",
-    price: 329000,
-    duration: "7 days",
-    servings: 21,
-    category: "keto",
-    dietary: ["Keto-Friendly", "Low-Carb"],
-    rating: 4.6,
-    reviews: 73,
-    calories: "1600-1900",
-    prep_time: "20 min",
-    image: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=400",
-    meals: ["Avocado & Salmon", "Cauliflower Rice Bowl", "Keto Fat Bombs"],
-  },
-  {
-    id: "5",
-    name: "Plant-Based Power",
-    description: "Nutritious vegetarian meals packed with plant proteins and vitamins",
-    price: 259000,
-    duration: "7 days",
-    servings: 21,
-    category: "vegetarian",
-    dietary: ["Vegetarian", "Plant-Based"],
-    rating: 4.8,
-    reviews: 92,
-    calories: "1700-2000",
-    prep_time: "16 min",
-    image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400",
-    meals: ["Buddha Bowls", "Lentil Power Plates", "Quinoa Superfood Salads"],
-  },
-];
 
 const categoryColors = {
   "weight-loss": "bg-red-100 text-red-800",
@@ -324,10 +241,32 @@ function MealPlanModal({ plan, isOpen, onClose }: { plan: MealPlan | null; isOpe
     </div>
   );
 }
- 
+
 export default function MenuPlans() {
+  const [mealPlans, setMealPlans] = useState<MealPlan[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const [selectedPlan, setSelectedPlan] = useState<MealPlan | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  useEffect(() => {
+    const fetchMealPlans = async () => {
+      try {
+        const res = await fetch("/api/meal-plans");
+        const data = await res.json();
+        if (data.success) {
+          setMealPlans(data.data);
+        } else {
+          setError("Failed to fetch meal plans");
+        }
+      } catch (err) {
+        setError("Failed to fetch meal plans");
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchMealPlans();
+  }, []);
 
   const handleSeeMore = (plan: MealPlan) => {
     setSelectedPlan(plan);
@@ -339,6 +278,14 @@ export default function MenuPlans() {
     setSelectedPlan(null);
   };
 
+  if (loading) {
+    return <div className="text-center py-12">Loading meal plans...</div>;
+  }
+
+  if (error) {
+    return <div className="text-center text-red-500 py-12">{error}</div>;
+  }
+
   return (
     <>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -346,7 +293,6 @@ export default function MenuPlans() {
           <MealPlanCard key={plan.id} plan={plan} onSeeMore={handleSeeMore} />
         ))}
       </div>
-
       <MealPlanModal plan={selectedPlan} isOpen={isModalOpen} onClose={closeModal} />
     </>
   );
