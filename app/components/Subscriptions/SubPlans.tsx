@@ -1,13 +1,35 @@
-'use client';
+"use client";
 import { useState } from "react";
 import { User, CreditCard, Calendar, Utensils, AlertCircle, CheckCircle } from "lucide-react";
 import { checkLogin } from "../../utils/auth";
 
-// Plan types
-const planTypes = [
-  { id: "diet", name: "Diet Plan", price: 30000 },
-  { id: "protein", name: "Protein Plan", price: 40000 },
-  { id: "royal", name: "Royal Plan", price: 60000 },
+// --- GANTI INI: Import mealPlans dari file MenuPlans atau paste array mealPlans yang sama persis ---
+const mealPlans = [
+  {
+    id: "1",
+    name: "Balanced Nutrition Plan",
+    price: 299000,
+  },
+  {
+    id: "2",
+    name: "Weight Loss Accelerator",
+    price: 279000,
+  },
+  {
+    id: "3",
+    name: "Muscle Building Pro",
+    price: 349000,
+  },
+  {
+    id: "4",
+    name: "Keto Lifestyle",
+    price: 329000,
+  },
+  {
+    id: "5",
+    name: "Plant-Based Power",
+    price: 259000,
+  },
 ];
 
 // Meal types
@@ -64,7 +86,7 @@ export default function SubscriptionPlans() {
 
   // Calculate total price
   const calculateTotalPrice = () => {
-    const selectedPlan = planTypes.find((plan) => plan.id === formData.planSelection);
+    const selectedPlan = mealPlans.find((plan) => plan.id === formData.planSelection);
     if (!selectedPlan) return 0;
 
     const mealTypesCount = formData.mealTypes.length;
@@ -130,11 +152,35 @@ export default function SubscriptionPlans() {
 
     if (validateForm()) {
       setIsSubmitted(true);
-      console.log("Subscription Data:", formData);
-      console.log("Total Price:", calculateTotalPrice());
+
+      const totalPrice = calculateTotalPrice();
+
+      const response = await fetch("/api/subscription", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+        body: JSON.stringify({
+          full_name: formData.name,
+          phone: formData.phone,
+          address: formData.address,
+          plan_id: formData.planSelection,
+          meal_types: formData.mealTypes,
+          delivery_days_id: formData.deliveryDays,
+          custom_days: formData.customDays,
+          allergies: formData.allergies,
+          total_price: totalPrice,
+        }),
+      });
+
+      const result = await response.json();
+      if (!result.success) {
+        alert("Failed to submit subscription.");
+        setIsSubmitted(false);
+      }
     }
   };
-  
 
   const handleMealTypeChange = (mealTypeId: string) => {
     setFormData((prev) => ({
@@ -159,7 +205,7 @@ export default function SubscriptionPlans() {
           <p className="text-green-700 mb-6">Thank you for subscribing to SEA Catering. We&apos;ll contact you shortly to confirm your order.</p>
           <div className="bg-white rounded-lg p-4 mb-6">
             <h3 className="font-semibold text-gray-900 mb-2">Order Summary:</h3>
-            <p className="text-gray-600">Plan: {planTypes.find((p) => p.id === formData.planSelection)?.name}</p>
+            <p className="text-gray-600">Plan: {mealPlans.find((p) => p.id === formData.planSelection)?.name}</p>
             <p className="text-gray-600">Meal Types: {formData.mealTypes.length} selected</p>
             <p className="text-gray-600">Total: {formatPrice(calculateTotalPrice())}</p>
           </div>
@@ -177,7 +223,7 @@ export default function SubscriptionPlans() {
                 address: "",
               });
             }}
-            className="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition-colors"
+            className="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition-colors cursor-pointer"
           >
             Create New Subscription
           </button>
@@ -264,7 +310,7 @@ export default function SubscriptionPlans() {
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {planTypes.map((plan) => (
+            {mealPlans.map((plan) => (
               <div key={plan.id} className="relative">
                 <input type="radio" id={plan.id} name="planSelection" value={plan.id} checked={formData.planSelection === plan.id} onChange={(e) => setFormData((prev) => ({ ...prev, planSelection: e.target.value }))} className="sr-only" />
                 <label
@@ -402,8 +448,8 @@ export default function SubscriptionPlans() {
           {formData.planSelection && formData.mealTypes.length > 0 && (formData.deliveryDays !== "custom" || formData.customDays.length > 0) ? (
             <div className="space-y-2">
               <div className="flex justify-between text-gray-700">
-                <span>Plan: {planTypes.find((p) => p.id === formData.planSelection)?.name}</span>
-                <span>{formatPrice(planTypes.find((p) => p.id === formData.planSelection)?.price || 0)}/meal</span>
+                <span>Plan: {mealPlans.find((p) => p.id === formData.planSelection)?.name}</span>
+                <span>{formatPrice(mealPlans.find((p) => p.id === formData.planSelection)?.price || 0)}/meal</span>
               </div>
               <div className="flex justify-between text-gray-700">
                 <span>Meal Types Selected:</span>
