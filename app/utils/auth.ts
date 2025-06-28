@@ -8,4 +8,4 @@ export async function checkLogin(): Promise<boolean> {
         console.error("Failed to check login", err);
         return false;
     }
-}
+} 
