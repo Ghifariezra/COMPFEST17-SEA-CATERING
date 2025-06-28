@@ -124,18 +124,18 @@ function MealPlanCard({ plan, onSeeMore }: { plan: MealPlan; onSeeMore: (plan: M
 }
 
 function MealPlanModal({ plan, isOpen, onClose }: { plan: MealPlan | null; isOpen: boolean; onClose: () => void }) {
+  const [isLoading, setIsLoading] = useState(false); // <-- Pindahkan ke atas, sebelum kondisi return
   if (!isOpen || !plan) return null;
-  const [isLoading, setIsLoading] = useState(false);
+
   const handleAddToCart = async () => {
     setIsLoading(true);
     const isLoggedIn = await checkLogin();
     if (!isLoggedIn) {
       sessionStorage.setItem("afterLoginRedirect", "/subscription");
       window.location.href = "/get-started";
-      setIsLoading(false); // <- tambahkan ini
+      setIsLoading(false);
       return;
     }
-
     // TODO: logic tambah ke cart
     alert(`Added "${plan.name}" to cart!`);
     setIsLoading(false);
@@ -259,7 +259,7 @@ export default function MenuPlans() {
         } else {
           setError("Failed to fetch meal plans");
         }
-      } catch (err) {
+      } catch {
         setError("Failed to fetch meal plans");
       } finally {
         setLoading(false);
