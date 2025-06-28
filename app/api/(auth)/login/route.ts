@@ -25,6 +25,7 @@ export async function POST(req: Request) {
                 email: true,
                 password: true,
                 full_name: true,
+                role: true,
             },
         });
 
@@ -47,6 +48,7 @@ export async function POST(req: Request) {
             id: user.id,
             email: user.email,
             full_name: user.full_name,
+            role: user.role,
         })
             .setProtectedHeader({ alg: "HS256" })
             .setIssuedAt()
@@ -65,6 +67,7 @@ export async function POST(req: Request) {
         return NextResponse.json({
             success: true,
             message: "Login berhasil.",
+            data: user,
         });
     } catch (error) {
         console.error("[LOGIN_ERROR]", error);

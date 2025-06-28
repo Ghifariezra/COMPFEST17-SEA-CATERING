@@ -23,7 +23,7 @@ export async function GET() {
                     id: payload.id,
                     email: payload.email,
                     full_name: payload.full_name,
-                    role: payload.role, // jika kamu include role
+                    role: payload.role,
                 },
             },
             { status: 200 }
