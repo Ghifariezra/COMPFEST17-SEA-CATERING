@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { User, CreditCard, Calendar, Utensils, AlertCircle, CheckCircle } from "lucide-react";
-import { checkLogin } from "../../utils/auth";
+import { checkLogin } from "../../utils/AuthUser";
 import { mealPlans, mealTypes, deliveryDaysOptions, weekDays } from "../../utils/Meals";
 
 function formatPrice(price: number): string {

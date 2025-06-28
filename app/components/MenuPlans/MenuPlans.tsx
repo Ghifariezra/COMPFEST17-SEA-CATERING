@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { Star, Clock, Users, Calendar, Utensils, X } from "lucide-react";
 import Image from "next/image";
-import { checkLogin } from "../../utils/auth";
+import { checkLogin } from "../../utils/AuthUser";
 import { 
   MealPlan,
  } from "../../types/Menu";
