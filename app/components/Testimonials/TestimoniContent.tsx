@@ -18,21 +18,12 @@ export default function TestimoniContent() {
         if (!res.ok) throw new Error("Network error");
         const data = await res.json();
         if (data.success) {
-          setTestimonials(
-            data.data.map((t: any) => ({
-              id: t.id, // gunakan id untuk key
-              name: t.name,
-              from: t.from,
-              feedback: t.feedback,
-              status: t.status,
-              rate: t.rate,
-            }))
-          );
+          setTestimonials(data.data as CardTestimonialProps[]);
         } else {
           setError("Failed to fetch testimonials");
         }
-      } catch (err: any) {
-        setError(err?.message || "Failed to fetch testimonials");
+      } catch (err) {
+        setError((err as Error)?.message || "Failed to fetch testimonials");
       } finally {
         setLoading(false);
       }
