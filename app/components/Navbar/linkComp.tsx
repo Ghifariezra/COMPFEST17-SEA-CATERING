@@ -34,4 +34,4 @@ export default function LinkComp({ href, text, active, setActive }: LinkCompProp
       </Link>
     </li>
   );
-}
+} 

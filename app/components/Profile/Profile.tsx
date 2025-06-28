@@ -29,12 +29,22 @@ export default function AvatarMenu({ user }: AvatarMenuProps) {
     }, []);
 
     const handleLogout = async () => {
-        await fetch("/api/logout", {
-            method: "GET",
-            credentials: "include",
-        });
-        window.location.reload();
+        try {
+            const res = await fetch("/api/logout", {
+                method: "GET",
+                credentials: "include",
+            });
+    
+            if (res.ok) {
+                window.location.href = "/";
+            } else {
+                console.error("Logout failed", await res.text());
+            }
+        } catch (err) {
+            console.error("Logout error:", err);
+        }
     };
+    
 
     const initials = user.full_name.charAt(0).toUpperCase();
 
@@ -56,7 +66,7 @@ export default function AvatarMenu({ user }: AvatarMenuProps) {
                         Hello, {user.full_name}
                     </div>
                     <button
-                        onClick={() => router.push("/profile")}
+                        onClick={() => router.push("/user/dashboard")}
                         className="w-full text-left px-5 py-3 text-sm hover:bg-zinc-100 text-zinc-700 transition-colors duration-150 cursor-pointer"
                     >
                         Profile
