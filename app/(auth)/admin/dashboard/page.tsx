@@ -3,13 +3,14 @@ import { getAdminMetrics } from "../../../services/admin";
 import { checkLoginAdmin } from "../../../utils/AuthAdmin";
 import { redirect } from "next/navigation";
 
-export default async function AdminDashboard({ searchParams }: { searchParams?: { start?: string; end?: string } }) {
+export default async function AdminDashboard(Props: { searchParams?: Promise<{ start?: string; end?: string }> }) {
   // Cek login dan role admin
   const user = await checkLoginAdmin();
   if (!user || user.role !== "admin") {
     redirect("/get-started");
   }
 
+  const searchParams = await Props.searchParams;
   // Default: 30 hari terakhir
   const end = searchParams?.end || new Date().toISOString().slice(0, 10);
   const start = searchParams?.start || new Date(new Date().setDate(new Date().getDate() - 30)).toISOString().slice(0, 10);
